@@ -1,0 +1,25 @@
+{
+    "Login":{
+        "title":"Giriş Yap",
+        "email":"E-Posta",
+        "password":"Şifre",
+        "loginBtn":"Giriş yap",
+        "forgotYourPassword":"Parolanızı mı unuttunuz ?",
+        "createAccount":"Hesap oluştur"
+    },
+    "Signup":{
+        "title":"Kayıt ol",
+        "email":"E-Posta",
+        "password":"Şifre",
+        "confirmPassword":"Şifre Tekrar",
+        "checkboxTxt1":"Kabul ediyorum",
+        "checkboxTxt2":"gizlilik politikasını",
+        "sigunpBtn":"Hesap oluştur",
+        "backLogin":"Zaten hesabınız var mı? Giriş"
+    },
+    "ForgotPassword":{
+        "title":"Parolanızı mı unuttunuz ? ",
+        "email":"E-Posta",
+        "forgotBtn":"Şifre Yenileme"
+    }
+}

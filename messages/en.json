@@ -1,0 +1,25 @@
+{
+    "Login":{
+        "title":"Login",
+        "email":"Email",
+        "password":"Password",
+        "loginBtn":"Log in",
+        "forgotYourPassword":"Forgot your password",
+        "createAccount":"Create account"
+    },
+    "Signup":{
+        "title":"Create account",
+        "email":"Email",
+        "password":"Password",
+        "confirmPassword":"Confirm password",
+        "checkboxTxt1":"I agree to the",
+        "checkboxTxt2":"privacy policy",
+        "sigunpBtn":"Create account",
+        "backLogin":"Already have an account? Login"
+    },
+    "ForgotPassword":{
+        "title":"Forgot Password",
+        "email":"Email",
+        "forgotBtn":"Recover password"
+    }
+}
