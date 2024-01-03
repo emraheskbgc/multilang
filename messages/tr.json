@@ -21,5 +21,14 @@
         "title":"Parolanızı mı unuttunuz ? ",
         "email":"E-Posta",
         "forgotBtn":"Şifre Yenileme"
+    },
+    "Header":{
+        "title1":"Anasayfa",
+        "title2":"Cari",
+        "title3":"Banka",
+        "title4":"Kasa",
+        "title5":"Gelir",
+        "title6":"Gider",
+        "button":"Hesap oluştur"
     }
 }

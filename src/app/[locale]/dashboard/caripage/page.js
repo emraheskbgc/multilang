@@ -1,10 +1,10 @@
-import SignUp from '@/components/SignUp'
+import CariPage from '@/components/CariPage'
 import React from 'react'
 
 function page() {
   return (
     <>
-    <SignUp/>
+        <CariPage/>
     </>
   )
 }

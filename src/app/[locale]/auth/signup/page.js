@@ -1,10 +1,11 @@
-import ForgotPassword from '@/components/ForgotPassword'
+import SignUp from '@/components/Auth/SignUp'
 import React from 'react'
+
 
 function page() {
   return (
     <>
-    <ForgotPassword/>
+    <SignUp/>
     </>
   )
 }

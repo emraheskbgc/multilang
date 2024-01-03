@@ -21,5 +21,14 @@
         "title":"Forgot Password",
         "email":"Email",
         "forgotBtn":"Recover password"
+    },
+    "Header":{
+        "title1":"Home",
+        "title2":"Cari",
+        "title3":"Bank",
+        "title4":"Case",
+        "title5":"Income",
+        "title6":"Expense",
+        "button":"Create account"
     }
 }
