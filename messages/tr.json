@@ -23,12 +23,12 @@
         "forgotBtn":"Şifre Yenileme"
     },
     "Header":{
-        "title1":"Anasayfa",
-        "title2":"Cari",
-        "title3":"Banka",
-        "title4":"Kasa",
-        "title5":"Gelir",
-        "title6":"Gider",
+        "homeTitle":"Anasayfa",
+        "cariTitle":"Cari",
+        "bankTitle":"Banka",
+        "caseTitle":"Kasa",
+        "incomeTitle":"Gelir",
+        "expenseTitle":"Gider",
         "button":"Hesap oluştur"
     }
 }

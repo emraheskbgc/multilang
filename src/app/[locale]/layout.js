@@ -2,6 +2,9 @@
 import SearchBar from '@/components/SearchBar'
 import '../globals.css'
 import Header from '@/components/Header'
+import { NextIntlClientProvider, useMessages } from 'next-intl'
+import tr from "@/messages/tr.json"
+import en from "@/messages/en.json"
 
 
 
@@ -13,13 +16,20 @@ export const metadata = {
 
 export default function RootLayout({ children, params:{locale} }) {
  
- 
+  let currentMessages = {};
+
+  // Seçilen dile göre uygun dil mesajlarını belirleyin
+  if (locale === 'tr') {
+    currentMessages = tr;
+  } else if (locale === 'en') {
+    currentMessages = en;
+  }
   return (
     <html lang={locale}>
       <body className='bg-gray-900'>  
-      <main >
+      <NextIntlClientProvider locale={locale} messages={currentMessages} >
       {children}
-      </main>
+      </NextIntlClientProvider>
       </body>
     </html>
   )

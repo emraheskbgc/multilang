@@ -23,12 +23,12 @@
         "forgotBtn":"Recover password"
     },
     "Header":{
-        "title1":"Home",
-        "title2":"Cari",
-        "title3":"Bank",
-        "title4":"Case",
-        "title5":"Income",
-        "title6":"Expense",
+        "homeTitle":"Home",
+        "cariTitle":"Cari",
+        "bankTitle":"Bank",
+        "caseTitle":"Case",
+        "incomeTitle":"Income",
+        "expenseTitle":"Expense",
         "button":"Create account"
     }
 }
