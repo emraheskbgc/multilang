@@ -4,15 +4,46 @@ import React, { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import LocaleSwitchers from "@/components/LocaleSwitchers";
 import { GrLanguage } from "react-icons/gr";
+import { useRouter } from 'next/navigation'
 
 function Login() {
+  const router = useRouter()
   const locale = useLocale();
   const t = useTranslations("Login");
 
+ 
   const [showDropLang, setShowDropLang] = useState(false);
   const handleDropLangToggle = () => {
     setShowDropLang(!showDropLang);
   };
+
+
+  const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
+
+
+  const mockUsers = [
+    {
+      id: 1,
+      email: 'emrah@emrah.com',
+      password: '123',
+    },
+  ];
+
+  const handleLogin = (e) => {
+    e.preventDefault()
+    const user = mockUsers.find((user => user.email === email && user.password === password))
+  
+    if (user) {
+      console.log("Giriş başarılı");
+      router.push(`/${locale}/dashboard/homepage`)
+    }else{
+      console.log("email veya parola yanlış");
+    }
+  }
+
+
+
   return (
     <div className="flex items-center min-h-screen p-6 bg-bodyBg">
       <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden  rounded-lg shadow-xl bg-authBg">
@@ -29,13 +60,16 @@ function Login() {
               <h1 className="mb-4 text-xl font-semibold text-gray-200">
                 {t("title")}
               </h1>
-              <label className=" text-sm text-gray-400 ">
+              <form onSubmit={handleLogin}>
+               <label className=" text-sm text-gray-400 ">
                 <span>{t("email")}</span>
                 <input
                   className=" p-3   mb-4 rounded-lg w-full text-sm text-gray-300 form-input leading-5 border-solid
                 bg-[#24262d] mt-2 focus:outline focus:outline-offset-2 focus:outline-4 focus:outline-gray-600"
                   type="email"
                   placeholder="emrah@gmail.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </label>
               <label className=" text-sm text-gray-400 ">
@@ -45,17 +79,20 @@ function Login() {
                bg-[#24262d] mt-2 focus:outline focus:outline-offset-2 focus:outline-4 focus:outline-gray-600"
                   type="password"
                   placeholder="***************"
+                  value={password}
+                  onChange={(e)=>setPassword(e.target.value)}
                 />
               </label>
-              <Link
+              <button
                 className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors
             duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white
              bg-[#7e3af2] border border-transparent active:bg-[#7e3af2] hover:bg-[#7134da]  w-full mt-4"
-                type="button"
-                href="/"
+                type="submit"
               >
                 {t("loginBtn")}
-              </Link>
+              </button>
+              </form>
+             
               <hr className="my-8" />
               <p className="mt-4">
                 <Link
