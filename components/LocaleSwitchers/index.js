@@ -8,7 +8,7 @@ const router = useRouter();
     router.replace(pathname, {locale: lang});
   };
   return (
-    <div className="absolute top-full right-11 mt-2 bg-white rounded-lg shadow-lg z-50">
+    <div className="absolute top-10 right-5 mt-2 bg-white rounded-lg shadow-lg z-50">
       <ul className="list-none">
        
           <li className="py-2 px-8  flex  items-center rounded-lg hover:bg-gray-200 cursor-pointer"  onClick={() => handleLocaleChange('tr')}>

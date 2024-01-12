@@ -1,9 +1,18 @@
+"use client"
+
 import Link from "next/link";
-import React from "react";
+import React,{useState} from "react";
 import { useTranslations } from "next-intl";
+import LocaleSwitchers from "@/components/LocaleSwitchers";
+import { GrLanguage } from "react-icons/gr";
+
 
 function ForgotPassword() {
   const t = useTranslations('ForgotPassword')
+  const [showDropLang, setShowDropLang] = useState(false);
+  const handleDropLangToggle = () => {
+    setShowDropLang(!showDropLang);
+  };
   return (
     <div className="flex items-center min-h-screen p-6 bg-bodyBg">
       <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden  rounded-lg shadow-xl bg-authBg">
@@ -15,7 +24,7 @@ function ForgotPassword() {
               className=" object-cover w-full h-full"
             />
           </div>
-          <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
+          <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2 relative">
             <div className="w-full">
               <h1 className="mb-4 text-xl font-semibold text-gray-200">
                {t('title')}
@@ -40,6 +49,18 @@ function ForgotPassword() {
                 {t('forgotBtn')}
               </Link>
             </div>
+
+         <div className="absolute top-0 right-0 text-white p-5">
+         <span >
+           <GrLanguage
+             className="w-5 h-5 hover:text-purple-500 cursor-pointer"
+             onClick={handleDropLangToggle}
+           />
+         </span>
+         {showDropLang && <div className="text-purple-500 ml-0">
+           <LocaleSwitchers />
+           </div>}
+       </div>
           </main>
         </div>
       </div>
