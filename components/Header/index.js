@@ -10,7 +10,6 @@ import { GiPayMoney } from "react-icons/gi";
 import { useLocale } from 'next-intl';
 import { useTranslations } from 'next-intl';
 
-
 function Header() {
    
   const [selectedItem, setSelectedItem] = useState(null)
@@ -33,19 +32,18 @@ function Header() {
     const t = useTranslations('Header')
   return (
     <>
-  
-     
-        <div className='z-30  flex-shrink-0 w-64 overflow-y-auto bg-gray-900'>
-            <div className='py-4 text-gray-400 '>
-                <Link href="/" className='ml-6 text-lg fond-bold text-gray-200'>
+    
+         <div className='z-30  flex-shrink-0 w-64 overflow-y-auto bg-white dark:bg-gray-900 h-[100vh] hidden md:flex'>
+            <div className='py-4 text-black dark:text-gray-400 '>
+                <Link href="/" className='ml-6 text-lg fond-bold text-black dark:text-gray-200'>
                     Logo
                 </Link>
                 <ul className='mt-6'>
                    {navbar.map((item,index) => (
                     <li className='relative px-6 py-3' key={index}>
                     <Link onClick={()=>handleClickItem(index)} href={`/${locale}/dashboard/${item.path}`}
-                     className={`inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-400  ${selectedItem === index ? "text-gray-100" : "text-gray-400"}`} >
-                        <span className={`absolute inset-y-0 left-0 w-1  rounded-tr-lg rounded-br-lg ${selectedItem === index ? " bg-purple-600" : "bg-gray-900"}`}></span>
+                     className={`inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-400  ${selectedItem === index ? "text-black dark:text-gray-100" : "text-gray-400"}`} >
+                        <span className={`absolute inset-y-0 left-0 w-1  rounded-tr-lg rounded-br-lg ${selectedItem === index ? " bg-purple-600" : "bg-white dark:bg-gray-900"}`}></span>
                         {item === "Home" && <IoMdHome className='w-5 h-5' />}
                         {item === "Cari" && <MdAccountBalance className='w-5 h-5' />}
                         {item === "Banka" && <BiSolidBank className='w-5 h-5' />}
@@ -64,8 +62,12 @@ function Header() {
         </div>
 
    
+           
 
+          
     
+     
+   
     
    
    

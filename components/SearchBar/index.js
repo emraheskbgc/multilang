@@ -5,86 +5,176 @@ import { FaUserCircle, FaSignOutAlt, FaMoon } from "react-icons/fa";
 import { FiSun } from "react-icons/fi";
 import { GrLanguage } from "react-icons/gr";
 import LocaleSwitchers from "../LocaleSwitchers";
+import { useTheme } from "next-themes";
 
 function SearchBar() {
   const [showDropdown, setShowDropdown] = useState(false); // Dropdown durumu
-  const [isSun, setIsSun] = useState(true);
-  const [showDropLang, setShowDropLang]= useState(false)
-  
- 
+  const [isSun, setIsSun] = useState(false);
+  const [showDropLang, setShowDropLang] = useState(false);
+  const { theme, setTheme } = useTheme();
 
+  const [isOpen, setIsOpen] = useState(false);
 
- 
   const handleDropdownToggle = () => {
     setShowDropdown(!showDropdown);
   };
   const handleThemeToggle = () => {
     setIsSun(!isSun);
+    if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
   };
   const handleDropLangToggle = () => {
-    setShowDropLang(!showDropLang)
-  }
+    setShowDropLang(!showDropLang);
+  };
 
-
- 
   return (
-    <header className="z-40 py-4 bg-gray-900 shadow-bottom ">
-      <div className="container  mx-auto text-purple-300">
-        <div className=" lg:mr-10  flex justify-between ">
-          <div className="relative w-full max-w-xl mr-6 focus-within:text-purple-500">
-            <div className="absolute inset-y-0 flex items-center pl-2 ">
-              <IoMdSearch className="w-4 h-4" />
-            </div>
-            <input
-              type="text"
-              placeholder="Search"
-              className="w-full p-2 rounded-lg focus:outline focus:outline-offset-2 focus:outline-4 focus:outline-gray-600 text-sm focus:outline-none text-gray-300 form-input leading-5 focus:boder-gray-600 border-gray-600 focus:shadow-outline-gray bg-gray-700 pl-8 "
-            />
-          </div>
-          <div className="flex items-center  relative ">
-          
-            <span>
-              {isSun ? (
-                <FiSun
-                  className="w-5 h-5 cursor-pointer"
-                  onClick={handleThemeToggle}
-                />
-              ) : (
-                <FaMoon
-                  className="w-5 h-5 cursor-pointer"
-                  onClick={handleThemeToggle}
-                />
-              )}
-            </span>
-            <span className="mx-4">
-            <GrLanguage className="w-5 h-5 hover:text-purple-500 cursor-pointer" onClick={handleDropLangToggle}/>
-            </span>
-            {showDropLang && (
-             <LocaleSwitchers/>
-            )}
-            <img
-              src="/assets/images/emrah.jpg"
-              className="w-9 h-9 rounded-full  cursor-pointer"
-              alt="profile"
-              onClick={handleDropdownToggle}
-            />
-            {showDropdown && (
-              <div className="absolute top-full right-0 mt-2 bg-white rounded-lg shadow-lg z-50">
-                <ul className="list-none">
-                  <li className="py-2 px-4 flex items-center rounded-lg hover:bg-gray-200 cursor-pointer">
-                    <FaUserCircle className="mr-2" /> Profile
-                  </li>
-                  <li className="py-2 px-4 flex items-center rounded-lg hover:bg-gray-200 cursor-pointer">
-                    <FaSignOutAlt className="mr-2" /> Logout
-                  </li>
-                </ul>
+    <>
+      <header className="z-40 py-4 bg-white dark:bg-gray-900 shadow-bottom hidden md:flex ">
+        <div className="container  mx-auto text-purple-300">
+          <div className=" lg:mr-10  flex justify-between ">
+            <div className="relative w-full max-w-xl mr-6 focus-within:text-purple-500">
+              <div className="absolute inset-y-0 flex items-center pl-2 ">
+                <IoMdSearch className="w-4 h-4" />
               </div>
-            )}
-          
+              <input
+                type="text"
+                placeholder="Search"
+                className="w-full p-2 rounded-lg focus:outline focus:outline-offset-2 focus:outline-4 focus:outline-gray-600 text-sm focus:outline-none text-gray-300 form-input leading-5 focus:boder-gray-600 border-gray-600 focus:shadow-outline-gray bg-gray-200 dark:bg-gray-700 pl-8 "
+              />
+            </div>
+            <div className="flex items-center  relative ">
+              <span>
+                {isSun ? (
+                  <FiSun
+                    className="w-5 h-5 cursor-pointer"
+                    onClick={handleThemeToggle}
+                  />
+                ) : (
+                  <FaMoon
+                    className="w-5 h-5 cursor-pointer"
+                    onClick={handleThemeToggle}
+                  />
+                )}
+              </span>
+              <span className="mx-4">
+                <GrLanguage
+                  className="w-5 h-5 hover:text-purple-500 cursor-pointer"
+                  onClick={handleDropLangToggle}
+                />
+              </span>
+              {showDropLang && <LocaleSwitchers />}
+              <img
+                src="/assets/images/emrah.jpg"
+                className="w-9 h-9 rounded-full  cursor-pointer"
+                alt="profile"
+                onClick={handleDropdownToggle}
+              />
+              {showDropdown && (
+                <div className="absolute top-full right-0 mt-2 bg-white rounded-lg shadow-lg z-50">
+                  <ul className="list-none">
+                    <li className="py-2 px-4 flex items-center rounded-lg hover:bg-gray-200 cursor-pointer">
+                      <FaUserCircle className="mr-2" /> Profile
+                    </li>
+                    <li className="py-2 px-4 flex items-center rounded-lg hover:bg-gray-200 cursor-pointer">
+                      <FaSignOutAlt className="mr-2" /> Logout
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {/* mobile nav */}
+      <header
+        className={`md:hidden flex justify-between items-center p-4 dark:bg-gray-800 bg-white ${
+          isOpen && "fixed w-full"
+        }`}
+      >
+        <div className="p-5 rounded-lg z-40">
+          <label>
+            <input type="checkbox" onClick={() => setIsOpen(!isOpen)} />
+            <div className="bar">
+              <span className={`top  bg-gray-800 dark:bg-purple-200`}></span>
+              <span className={`middle bg-gray-800 dark:bg-purple-200`}></span>
+              <span className={`bottom bg-gray-800 dark:bg-purple-200`}></span>
+            </div>
+          </label>
+        </div>
+        {isOpen && (
+          <>
+            <aside
+              className="fixed inset-y-0 z-50 flex-shrink-0 w-64 mt-[70px] overflow-y-auto left-0 bg-white dark:bg-gray-800 
+          md:hidden "
+            >
+              <div className="py-4 text-gray-500 dark:text-gray-400 ">
+                <p className="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200 ">
+                  Logo
+                </p>
+                <ul className="mt-6">
+                  <li className="relative px-6 py-3">Anasayfa</li>
+                  <li className="relative px-6 py-3">ilteişim</li>
+                  <li className="relative px-6 py-3">Cari</li>
+                  <li className="relative px-6 py-3">Banka</li>
+                </ul>
+              </div>
+            </aside>
+          </>
+        )}
+        <div className="relative w-auto max-w-xl mr-6 focus-within:text-purple-500">
+          <div className="absolute inset-y-0 flex items-center pl-2 ">
+            <IoMdSearch className="w-4 h-4" />
+          </div>
+          <input
+            type="text"
+            placeholder="Search"
+            className="w-full p-2 rounded-lg focus:outline focus:outline-offset-2 focus:outline-4 focus:outline-gray-600 text-sm focus:outline-none text-gray-300 form-input leading-5 focus:boder-gray-600 border-gray-600 focus:shadow-outline-gray bg-gray-200 dark:bg-gray-700 pl-8 "
+          />
+        </div>
+        <span>
+          {isSun ? (
+            <FiSun
+              className="w-5 h-5 cursor-pointer"
+              onClick={handleThemeToggle}
+            />
+          ) : (
+            <FaMoon
+              className="w-5 h-5 cursor-pointer"
+              onClick={handleThemeToggle}
+            />
+          )}
+        </span>
+        <span className="mx-4">
+          <GrLanguage
+            className="w-5 h-5 hover:text-purple-500 cursor-pointer"
+            onClick={handleDropLangToggle}
+          />
+        </span>
+        {showDropLang && <LocaleSwitchers />}
+        <img
+          src="/assets/images/emrah.jpg"
+          className="w-9 h-9 rounded-full  cursor-pointer"
+          alt="profile"
+          onClick={handleDropdownToggle}
+        />
+        {showDropdown && (
+          <div className="absolute top-12 right-2 mt-2 bg-gray-700 rounded-lg shadow-lg z-50">
+            <ul className="list-none">
+              <li className="py-2 px-4 flex items-center rounded-lg hover:bg-gray-200 cursor-pointer">
+                <FaUserCircle className="mr-2" /> Profile
+              </li>
+              <li className="py-2 px-4 flex items-center rounded-lg hover:bg-gray-200 cursor-pointer">
+                <FaSignOutAlt className="mr-2" /> Logout
+              </li>
+            </ul>
+          </div>
+        )}
+      </header>
+    </>
   );
 }
 
