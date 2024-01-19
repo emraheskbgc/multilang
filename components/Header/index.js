@@ -9,19 +9,11 @@ import { GiReceiveMoney } from "react-icons/gi";
 import { GiPayMoney } from "react-icons/gi";
 import { useLocale } from 'next-intl';
 import { useTranslations } from 'next-intl';
-
+import navbarData from "@/public/assets/data/navbar"
 function Header() {
    
   const [selectedItem, setSelectedItem] = useState(null)
-  const navbar = [
-    { title: "homeTitle", path: "homepage" },
-    { title: "cariTitle", path: "caripage" },
-    { title: "bankTitle", path: "bankpage" },
-    { title: "caseTitle", path: "casepage" },
-    { title: "incomeTitle", path: "incomepage" },
-    { title: "expenseTitle", path: "expensepage" },
-];
-    
+  
 
     const handleClickItem = (index) => {
         setSelectedItem(index)
@@ -39,7 +31,7 @@ function Header() {
                     Logo
                 </Link>
                 <ul className='mt-6'>
-                   {navbar.map((item,index) => (
+                   {navbarData.map((item,index) => (
                     <li className='relative px-6 py-3' key={index}>
                     <Link onClick={()=>handleClickItem(index)} href={`/${locale}/dashboard/${item.path}`}
                      className={`inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-400  ${selectedItem === index ? "text-black dark:text-gray-100" : "text-gray-400"}`} >
