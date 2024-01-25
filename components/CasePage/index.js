@@ -2,7 +2,7 @@ import React from 'react'
 
 function CasePage() {
   return (
-    <div>CasePage</div>
+    <div className=' text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900 h-[100vh]'>Kasa Sayfası</div>
   )
 }
 
