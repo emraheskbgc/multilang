@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import LocaleSwitchers from "@/components/LocaleSwitchers";
 import { GrLanguage } from "react-icons/gr";
 import { useRouter } from 'next/navigation'
+import ThemeSwitchers from "@/components/ThemeSwitchers";
 
 function Login() {
   const router = useRouter()
@@ -45,8 +46,8 @@ const [password, setPassword] = useState('');
 
 
   return (
-    <div className="flex items-center min-h-screen p-6 bg-bodyBg">
-      <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden  rounded-lg shadow-xl bg-authBg">
+    <div className="flex items-center min-h-screen p-6 dark:bg-bodyBg bg-gray-50">
+      <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden  rounded-lg shadow-xl dark:bg-authBg">
         <div className="flex flex-col overflow-y-auto md:flex-row">
           <div className="h-32 md:h-auto md:w-1/2">
             <img
@@ -57,26 +58,26 @@ const [password, setPassword] = useState('');
           </div>
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2 relative">
             <div className="w-full">
-              <h1 className="mb-4 text-xl font-semibold text-gray-200">
+              <h1 className="mb-4 text-xl font-semibold dark:text-gray-200 text-gray-700">
                 {t("title")}
               </h1>
               <form onSubmit={handleLogin}>
-               <label className=" text-sm text-gray-400 ">
+               <label className=" text-sm dark:text-gray-400 text-gray-700 ">
                 <span>{t("email")}</span>
                 <input
-                  className=" p-3   mb-4 rounded-lg w-full text-sm text-gray-300 form-input leading-5 border-solid
-                bg-[#24262d] mt-2 focus:outline focus:outline-offset-2 focus:outline-4 focus:outline-gray-600"
+                  className=" p-3   mb-4 rounded-lg w-full text-sm dark:text-gray-300 text-gray-800 form-input leading-5 border-solid
+                dark:bg-[#24262d] bg-gray-200 mt-2 focus:outline focus:outline-offset-2 focus:outline-4 focus:outline-gray-600"
                   type="email"
                   placeholder="emrah@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </label>
-              <label className=" text-sm text-gray-400 ">
+              <label className=" text-sm dark:text-gray-400 text-gray-700 ">
                 <span>{t("password")}</span>
                 <input
                   className=" p-3 mb-4 rounded-lg w-full text-sm text-gray-300 form-input leading-5 border-solid
-               bg-[#24262d] mt-2 focus:outline focus:outline-offset-2 focus:outline-4 focus:outline-gray-600"
+               dark:bg-[#24262d] bg-gray-200 mt-2 focus:outline focus:outline-offset-2 focus:outline-4 focus:outline-gray-600"
                   type="password"
                   placeholder="***************"
                   value={password}
@@ -96,7 +97,7 @@ const [password, setPassword] = useState('');
               <hr className="my-8" />
               <p className="mt-4">
                 <Link
-                  className="text-sm font-medium text-purple-400 hover:underline "
+                  className="text-sm font-medium dark:text-purple-400 text-purple-600 hover:underline "
                   href={`/${locale}/forgot-password`}
                 >
                   {t("forgotYourPassword")}
@@ -104,21 +105,25 @@ const [password, setPassword] = useState('');
               </p>
               <p className="mt-1">
                 <Link
-                  className="text-sm font-medium text-purple-400 hover:underline "
+                  className="text-sm font-medium dark:text-purple-400 text-purple-600 hover:underline "
                   href={`/${locale}/signup`}
                 >
                   {t("createAccount")}
                 </Link>
               </p>
             </div>
-            <div className="absolute top-0 right-0 text-white p-5">
+            <div className="absolute flex space-x-2 top-0 right-0 text-white p-5">
+              <span>
+              <ThemeSwitchers/>
+              </span>
               <span >
                 <GrLanguage
-                  className="w-5 h-5 hover:text-purple-500 cursor-pointer"
+                  className="w-5 h-5 hover:text-purple-800 dark:text-white text-purple-500 cursor-pointer"
                   onClick={handleDropLangToggle}
                 />
               </span>
-              {showDropLang && <div className="text-purple-500 ml-0">
+             
+              {showDropLang && <div className="text-purple-500 ml-0 ">
                 <LocaleSwitchers />
                 </div>}
             </div>

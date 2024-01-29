@@ -1,22 +1,22 @@
 "use client";
 import React, { useState } from "react";
 import { IoMdSearch } from "react-icons/io";
-import { FaUserCircle, FaSignOutAlt, FaMoon } from "react-icons/fa";
-import { FiSun } from "react-icons/fi";
+import { FaUserCircle, FaSignOutAlt } from "react-icons/fa";
+
 import { GrLanguage } from "react-icons/gr";
 import LocaleSwitchers from "../LocaleSwitchers";
-import { useTheme } from "next-themes";
 import navbarData from "@/public/assets/data/navbar"
 import Link from "next/link";
 import { useLocale } from 'next-intl';
 import { useTranslations } from 'next-intl';
 import 'animate.css';
+import ThemeSwitchers from "../ThemeSwitchers";
 
 function SearchBar() {
   const [showDropdown, setShowDropdown] = useState(false); // Dropdown durumu
-  const [isSun, setIsSun] = useState(false);
+  
   const [showDropLang, setShowDropLang] = useState(false);
-  const { theme, setTheme } = useTheme();
+ 
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null)
   
@@ -35,14 +35,7 @@ function SearchBar() {
   const handleDropdownToggle = () => {
     setShowDropdown(!showDropdown);
   };
-  const handleThemeToggle = () => {
-    setIsSun(!isSun);
-    if (theme === "light") {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
-  };
+ 
   const handleDropLangToggle = () => {
     setShowDropLang(!showDropLang);
   };
@@ -64,17 +57,7 @@ function SearchBar() {
             </div>
             <div className="flex items-center  relative ">
               <span>
-                {isSun ? (
-                  <FiSun
-                    className="w-5 h-5 cursor-pointer"
-                    onClick={handleThemeToggle}
-                  />
-                ) : (
-                  <FaMoon
-                    className="w-5 h-5 cursor-pointer"
-                    onClick={handleThemeToggle}
-                  />
-                )}
+                <ThemeSwitchers />
               </span>
               <span className="mx-4">
                 <GrLanguage
@@ -167,17 +150,7 @@ function SearchBar() {
           />
         </div>
         <span>
-          {isSun ? (
-            <FiSun
-              className="w-5 h-5 cursor-pointer"
-              onClick={handleThemeToggle}
-            />
-          ) : (
-            <FaMoon
-              className="w-5 h-5 cursor-pointer"
-              onClick={handleThemeToggle}
-            />
-          )}
+          <ThemeSwitchers/>
         </span>
         <span className="mx-4">
           <GrLanguage
