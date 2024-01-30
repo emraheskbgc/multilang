@@ -4,6 +4,8 @@ import { FaPlus } from "react-icons/fa";
 
 function ProfilePage() {
   const [isEdit, setIsEdit] = useState(false)
+  const [selectedImage, setSelectedImage] = useState(null);
+
   const [user, setUser] = useState({
     name: 'Emrah',
     surname: 'Eskibağcı',
@@ -27,13 +29,31 @@ function ProfilePage() {
       [name]: value,
     }));
   };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSelectedImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   return (
     <div className='flex flex-col justify-center items-center text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900 h-[100vh]'>
       <div className='mb-5 relative'>
-        <img src="/assets/images/emrah.jpg" alt="avatar" className=' rounded-full h-36 w-36' />
-         <div className='absolute bottom-0 right-5 bg-blue-500 p-1 cursor-pointer rounded-full'>
-       <FaPlus/>
-      </div>
+      <img src={selectedImage || "/assets/images/emrah.jpg"} alt="avatar" className='rounded-full h-36 w-36' />
+      <label htmlFor="imageInput" className='absolute bottom-0 right-5 bg-blue-500 p-1 cursor-pointer rounded-full'>
+        <FaPlus />
+      </label>
+      <input
+        type="file"
+        id="imageInput"
+        accept="image/*"
+        style={{ display: 'none' }}
+        onChange={handleImageChange}
+      />
       </div>
      
       <div className="ml-8">
