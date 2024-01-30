@@ -1,14 +1,24 @@
-import React from "react";
+import React,{useRef} from "react";
+import useClickOutside from "@/useOutsideClick";
 
 import { usePathname, useRouter } from "@/src/navigation";
-function LocaleSwitchers() {
+function LocaleSwitchers({setShowDropLang}) {
+
+  const localRef = useRef();
+
+  useClickOutside(localRef ,() => {
+    setShowDropLang(false)
+  })
+
+
   const pathname = usePathname();
 const router = useRouter();
   const handleLocaleChange = (lang) => {
     router.replace(pathname, {locale: lang});
   };
   return (
-    <div className="absolute md:top-10 top-12 right-5 mt-2 md:bg-white bg-gray-700 rounded-lg shadow-lg z-50">
+
+    <div ref={localRef} className="absolute md:top-10 top-12 right-5 mt-2 md:bg-white bg-gray-700 rounded-lg shadow-lg z-50">
       <ul className="list-none">
        
           <li className="py-2 px-8  flex  items-center rounded-lg hover:bg-gray-200 cursor-pointer"  onClick={() => handleLocaleChange('tr')}>

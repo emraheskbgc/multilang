@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { IoMdSearch } from "react-icons/io";
 import { FaUserCircle, FaSignOutAlt } from "react-icons/fa";
 
@@ -12,10 +12,21 @@ import { useTranslations } from 'next-intl';
 import 'animate.css';
 import ThemeSwitchers from "../ThemeSwitchers";
 
+import useClickOutside from "@/useOutsideClick";
+
 function SearchBar() {
+
+  // outsideclik start
+    const dropMenuRef = useRef()
+    useClickOutside(dropMenuRef, () => {
+      setShowDropdown(false)
+    })
+    
+  // outsideclik end
+
   const [showDropdown, setShowDropdown] = useState(false); // Dropdown durumu
   
-  const [showDropLang, setShowDropLang] = useState(false);
+  const [showDropLang, setShowDropLang] = useState(false); // Dil durumu 
  
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null)
@@ -65,8 +76,9 @@ function SearchBar() {
                   onClick={handleDropLangToggle}
                 />
               </span>
-              {showDropLang && <LocaleSwitchers />}
-              <img
+              {showDropLang && <LocaleSwitchers setShowDropLang={setShowDropLang}/>}
+              <div ref={dropMenuRef}>
+               <img
                 src="/assets/images/emrah.jpg"
                 className="w-9 h-9 rounded-full  cursor-pointer"
                 alt="profile"
@@ -75,15 +87,20 @@ function SearchBar() {
               {showDropdown && (
                 <div className="absolute top-full right-0 mt-2 bg-white rounded-lg shadow-lg z-50">
                   <ul className="list-none">
-                    <li className="py-2 px-4 flex items-center rounded-lg hover:bg-gray-200 cursor-pointer">
+                  <Link href={`/${locale}/profile`}>
+                  <li className="py-2 px-4 flex items-center rounded-lg hover:bg-gray-200 cursor-pointer">
                       <FaUserCircle className="mr-2" /> Profile
                     </li>
+                  </Link>
+                    
                     <li className="py-2 px-4 flex items-center rounded-lg hover:bg-gray-200 cursor-pointer">
                       <FaSignOutAlt className="mr-2" /> Logout
                     </li>
                   </ul>
                 </div>
               )}
+              </div>
+             
             </div>
           </div>
         </div>

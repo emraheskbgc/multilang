@@ -57,7 +57,7 @@ function ForgotPassword() {
          </span>
          <span >
            <GrLanguage
-             className="w-5 h-5 hover:text-purple-500 cursor-pointer"
+             className="w-5 h-5 hover:text-purple-500  dark:text-white text-purple-500 cursor-pointer"
              onClick={handleDropLangToggle}
            />
          </span>
