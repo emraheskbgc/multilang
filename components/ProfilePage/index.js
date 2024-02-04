@@ -1,10 +1,12 @@
 "use client"
 import React,{useState} from 'react'
 import { FaPlus } from "react-icons/fa";
-
+import Link from 'next/link';
+import { useLocale } from 'next-intl';
 function ProfilePage() {
   const [isEdit, setIsEdit] = useState(false)
   const [selectedImage, setSelectedImage] = useState(null);
+  const locale = useLocale()
 
   const [user, setUser] = useState({
     name: 'Emrah',
@@ -102,6 +104,7 @@ function ProfilePage() {
               Düzenle
             </button>
           )}
+          <Link href={`/${locale}/dashboard/homepage`} className='hover:underline'>Back to Home</Link>
         </form>
       </div>
     </div>
