@@ -1,11 +1,13 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import LocaleSwitchers from "@/components/LocaleSwitchers";
 import { GrLanguage } from "react-icons/gr";
 import { useRouter } from 'next/navigation'
 import ThemeSwitchers from "@/components/ThemeSwitchers";
+import users from "@/public/assets/data/users";
+import Cookies from "js-cookie";
 
 function Login() {
   const router = useRouter()
@@ -23,28 +25,33 @@ function Login() {
 const [password, setPassword] = useState('');
 
 
-  const mockUsers = [
-    {
-      id: 1,
-      email: 'emrah@emrah.com',
-      password: '123',
-    },
-  ];
 
   const handleLogin = (e) => {
     e.preventDefault()
-    const user = mockUsers.find((user => user.email === email && user.password === password))
+    const user = users.find((user => user.email === email && user.password === password))
   
     if (user) {
       console.log("Giriş başarılı");
+      Cookies.set("user", JSON.stringify(user))
       router.push(`/${locale}/dashboard/homepage`)
     }else{
       console.log("email veya parola yanlış");
     }
   }
 
+  /*
+  // Cookie silme işlemi
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      Cookies.remove("user");
+    }, 10000); // 10 saniye sonra cookie silinir
 
-
+    return () => {
+      clearTimeout(timer);
+      Cookies.remove("user"); // Timer temizlendiğinde Cookie'yi hemen sil
+    };
+  }, []);
+*/
   return (
     <div className="flex items-center min-h-screen p-6 dark:bg-bodyBg bg-gray-50">
       <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden  rounded-lg shadow-xl dark:bg-authBg">

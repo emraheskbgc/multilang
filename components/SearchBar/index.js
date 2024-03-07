@@ -11,10 +11,20 @@ import { useLocale } from 'next-intl';
 import { useTranslations } from 'next-intl';
 import 'animate.css';
 import ThemeSwitchers from "../ThemeSwitchers";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 import useClickOutside from "@/useOutsideClick";
 
 function SearchBar() {
+
+  const router = useRouter()
+  const locale = useLocale()
+  const handleLogout = () => {
+    console.log("çıkış yapıldı");
+    Cookies.remove("user")
+    router.push(`/${locale}/auth/login`)
+  }
 
   // outsideclik start
     const dropMenuRef = useRef()
@@ -37,7 +47,7 @@ function SearchBar() {
       setIsOpen(false)
   }
 
-  const locale = useLocale()
+
 
     const t = useTranslations('Header')
 
@@ -93,7 +103,7 @@ function SearchBar() {
                     </li>
                   </Link>
                     
-                    <li className="py-2 px-4 flex items-center rounded-lg hover:bg-gray-200 cursor-pointer">
+                    <li className="py-2 px-4 flex items-center rounded-lg hover:bg-gray-200 cursor-pointer" onClick={handleLogout}>
                       <FaSignOutAlt className="mr-2" /> Logout
                     </li>
                   </ul>
